@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.esintcorp.data.model.User;
 import com.esintcorp.data.repository.UserRepository;
@@ -16,8 +17,9 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/register")
-    public User createQuestion(@Valid @RequestBody User user) {
+    public User createUser(@Valid @RequestBody User user) {
 		System.out.println("USER: " + user);
         return userRepository.save(user);
     }
