@@ -59,5 +59,9 @@ public class User extends AuditModel {
     @Size(min = 3, max = 100)
     private String email;
 
+    @NotBlank
+    @Size(min = 8)
+    private String password;
+
 
 }
