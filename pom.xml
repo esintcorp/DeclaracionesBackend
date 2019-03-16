@@ -71,8 +71,15 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.6</version>
+<!-- 			<version>1.18.6</version> -->
 		</dependency>
+
+
+        <!-- Database migration -->
+<!--         <dependency> -->
+<!--             <groupId>org.flywaydb</groupId> -->
+<!--             <artifactId>flyway-core</artifactId> -->
+<!--         </dependency> -->
 
 	</dependencies>
 

@@ -21,7 +21,7 @@ public class UserController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@CrossOrigin(origins = "http://localhost:3000")
+//	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/register")
     public User createUser(@Valid @RequestBody User user) {
 		System.out.println("USER: " + user);
