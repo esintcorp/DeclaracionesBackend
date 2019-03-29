@@ -14,7 +14,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "subscription")
+@Table(name = "Subscription")
 @EqualsAndHashCode(callSuper=true)
 @Data
 public class Subscription extends AuditModel {
@@ -23,8 +23,9 @@ public class Subscription extends AuditModel {
     @GeneratedValue(generator = "subscription_generator")
     @SequenceGenerator(
             name = "subscription_generator",
-            sequenceName = "subscription_sequence",
-            initialValue = 1000
+            sequenceName = "subscription_seq",
+            initialValue = 1,
+            allocationSize = 1
     )
     private Long id;
 
@@ -39,5 +40,5 @@ public class Subscription extends AuditModel {
     private User user;
 
     @OneToOne
-    private SubscriptionPeriod subscriptionPeriod;
+    private SubscriptionPeriod period;
 }

@@ -95,7 +95,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	List<String> finalPublicUrls = Stream.of("/", "/login", "/register").collect(Collectors.toList());
+    	List<String> finalPublicUrls = Stream.of("/", "/login", "/register", "/subscription", "/payment").collect(Collectors.toList());
 
     	http
         .csrf()
