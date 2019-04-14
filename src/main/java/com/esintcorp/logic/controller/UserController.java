@@ -2,6 +2,7 @@ package com.esintcorp.logic.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,4 +54,10 @@ public class UserController {
         userRepository.save(user);
         return subscriptionPeriodRepository.findActive();
     }
+
+	@PostMapping("/getUser")
+    public List<SubscriptionPeriod> getUser(HttpServletRequest request) {
+		System.out.println("id: " + request.getSession().getAttribute("UserID"));
+		return null;
+	}
 }
