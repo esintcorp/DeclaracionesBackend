@@ -20,6 +20,9 @@ public class SystemUserDetailsService implements UserDetailsService {
 		System.out.println(" USERNAME::: " + username);
 		User user = userRepository.findByEmail(username);
 //		return new AuthenticableUser(username, user.getPassword(), true, true, true, true, null);
+		if (user == null) {
+			throw new UsernameNotFoundException("No user found with e-mail: " + username);
+		}
 		return new MyUserPrincipal(user);
 	}
 
