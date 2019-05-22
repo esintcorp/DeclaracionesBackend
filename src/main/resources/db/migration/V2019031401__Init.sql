@@ -133,7 +133,8 @@ CREATE TABLE Question (
   declaration_id INTEGER NOT NULL,
   billType_id    INTEGER NOT NULL,
   name           VARCHAR(1024) NOT NULL,
-  sequence       INTEGER NOT NULL
+  sequence       INTEGER NOT NULL,
+  datatype       VARCHAR(24) NOT NULL
 );
 
 CREATE SEQUENCE question_seq
@@ -196,5 +197,12 @@ INSERT INTO BillType
 VALUES
 (1, now(), now(), 'active', 'Compra'),
 (2, now(), now(), 'active', 'Venta');
+
+
+
+INSERT INTO SystemUser
+(ID, created_at, updated_at, EMAIL, FIRSTNAME, IDCARD, LASTNAME, PASSWORD, RUCNUMBER, STATUS, TYPE)
+VALUES
+(1, now(), now(), 'h.adrian1388@gmail.com', 'Hêctor', '0502875065', 'Mosquera', '$2a$10$zU.9PO.DTSdKHhCRaVU0K.6T9ZNuNY85cJJXMDVfvtT3wdpi/bgLi', '111', 'active', 'nat');
 
 /* END OF Initial values */

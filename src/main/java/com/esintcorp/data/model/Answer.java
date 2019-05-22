@@ -41,8 +41,8 @@ public class Answer extends AuditModel {
     private Question question;
 
     @ManyToOne
-    private Bill bill;
+    private User user;
 
     @ManyToOne
-    private User user;
+    private Bill bill;
 }

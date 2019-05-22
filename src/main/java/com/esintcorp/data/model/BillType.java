@@ -4,31 +4,29 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "Question")
+@Table(name = "BillType")
 @EqualsAndHashCode(callSuper=true)
 @Data
-public class Question extends AuditModel {
+public class BillType extends AuditModel {
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator = "question_generator")
+    @GeneratedValue(generator = "billType_generator")
     @SequenceGenerator(
-            name = "question_generator",
-            sequenceName = "question_seq",
+            name = "billType_generator",
+            sequenceName = "billType_seq",
             initialValue = 1,
             allocationSize = 1
     )
@@ -38,20 +36,7 @@ public class Question extends AuditModel {
     @Column(columnDefinition = "text")
     private String status;
 
-    @ManyToOne
-    private Declaration declaration;
-
-    @ManyToOne
-    private BillType billType;
-
     @NotBlank
-    @Size(min = 1, max = 1024)
+    @Size(min = 1, max = 16)
     private String name;
-
-    @NotNull
-    private Integer sequence;
-
-    @NotBlank
-    @Size(min = 1, max = 24)
-    private String datatype;
 }
