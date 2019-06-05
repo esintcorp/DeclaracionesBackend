@@ -8,6 +8,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -26,11 +27,11 @@ import lombok.Data;
 @Data
 public abstract class AuditModel implements Serializable {
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate
     private Date createdAt = new Date();
@@ -43,4 +44,9 @@ public abstract class AuditModel implements Serializable {
 //    @Column(nullable = false)
 //    @Version
 //    protected Integer version;
+
+    @NotBlank
+    @Column(columnDefinition = "text")
+    private String status = "active";
+
 }

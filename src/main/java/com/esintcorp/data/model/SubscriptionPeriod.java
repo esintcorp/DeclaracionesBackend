@@ -20,19 +20,20 @@ import lombok.EqualsAndHashCode;
 @Data
 public class SubscriptionPeriod extends AuditModel {
 
-	@Id
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    @Id
     @GeneratedValue(generator = "subscription_period_generator")
     @SequenceGenerator(
-    	name = "subscription_period_generator",
-    	sequenceName = "subscriptionperiod_seq",
-    	initialValue = 1,
+        name = "subscription_period_generator",
+        sequenceName = "subscriptionperiod_seq",
+        initialValue = 1,
         allocationSize = 1
     )
     private Long id;
-
-    @NotBlank
-    @Column(columnDefinition = "text")
-    private String status;
 
     @NotBlank
     @Column(columnDefinition = "text")

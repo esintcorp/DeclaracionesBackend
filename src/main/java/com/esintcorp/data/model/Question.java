@@ -1,6 +1,5 @@
 package com.esintcorp.data.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -33,10 +32,6 @@ public class Question extends AuditModel {
             allocationSize = 1
     )
     private Long id;
-
-    @NotBlank
-    @Column(columnDefinition = "text")
-    private String status;
 
     @ManyToOne
     private Declaration declaration;

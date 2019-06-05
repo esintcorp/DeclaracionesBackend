@@ -35,10 +35,12 @@ public class BillController {
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = 1;
-            c.set(year, month, day);
+            c.set(year, month, day, 0, 0, 0);
+            c.set(Calendar.MILLISECOND, 0);
             int numOfDaysInMonth = c.getActualMaximum(Calendar.DAY_OF_MONTH);
             Date start = c.getTime();
-            c.add(Calendar.DAY_OF_MONTH, numOfDaysInMonth-1);
+
+            c.add(Calendar.DAY_OF_MONTH, numOfDaysInMonth);
             Date end = c.getTime();
 
             List<Bill> billes = billRepository.findThisMonth(user, start, end);

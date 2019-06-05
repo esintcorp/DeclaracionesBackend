@@ -150,6 +150,7 @@ CREATE TABLE Answer (
   updated_at     TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
   status         VARCHAR(24) NOT NULL,
   question_id    INTEGER NOT NULL,
+  value          VARCHAR(1024) NOT NULL,
   user_id        INTEGER NOT NULL,
   bill_id        INTEGER NOT NULL
 );

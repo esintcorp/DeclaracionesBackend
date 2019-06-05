@@ -1,6 +1,5 @@
 package com.esintcorp.data.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,8 +34,8 @@ public class Answer extends AuditModel {
     private Long id;
 
     @NotBlank
-    @Column(columnDefinition = "text")
-    private String status;
+    @Size(min = 1, max = 1024)
+    private String value;
 
     @ManyToOne
     private Question question;

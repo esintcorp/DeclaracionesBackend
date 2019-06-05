@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -35,10 +34,6 @@ public class PaymentCard extends AuditModel {
             allocationSize = 1
     )
     private Long id;
-
-    @NotBlank
-    @Column(columnDefinition = "text")
-    private String status;
 
     @Size(min = 3, max = 1024)
     private String cardName;

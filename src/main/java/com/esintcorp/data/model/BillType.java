@@ -1,6 +1,5 @@
 package com.esintcorp.data.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -31,10 +30,6 @@ public class BillType extends AuditModel {
             allocationSize = 1
     )
     private Long id;
-
-    @NotBlank
-    @Column(columnDefinition = "text")
-    private String status;
 
     @NotBlank
     @Size(min = 1, max = 16)

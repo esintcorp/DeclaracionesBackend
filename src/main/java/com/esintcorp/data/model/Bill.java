@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -34,10 +33,6 @@ public class Bill extends AuditModel {
             allocationSize = 1
     )
     private Long id;
-
-    @NotBlank
-    @Column(columnDefinition = "text")
-    private String status;
 
     @NotNull
     @Column

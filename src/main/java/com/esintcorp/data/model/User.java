@@ -35,10 +35,6 @@ public class User extends AuditModel {
     private Long id;
 
     @NotBlank
-    @Column(columnDefinition = "text")
-    private String status;
-
-    @NotBlank
     @Size(min = 3, max = 15)
     private String type;
 
