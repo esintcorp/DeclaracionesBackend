@@ -23,10 +23,10 @@ public class Declaration extends AuditModel {
     @Id
     @GeneratedValue(generator = "declaration_generator")
     @SequenceGenerator(
-            name = "declaration_generator",
-            sequenceName = "declaration_seq",
-            initialValue = 1,
-            allocationSize = 1
+        name = "declaration_generator",
+        sequenceName = "declaration_seq",
+        initialValue = 1,
+        allocationSize = 1
     )
     private Long id;
 

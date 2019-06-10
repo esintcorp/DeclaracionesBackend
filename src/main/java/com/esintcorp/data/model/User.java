@@ -27,10 +27,10 @@ public class User extends AuditModel {
 	@Id
     @GeneratedValue(generator = "user_generator")
     @SequenceGenerator(
-            name = "user_generator",
-            sequenceName = "systemuser_seq",
-            initialValue = 1,
-            allocationSize = 1
+        name = "user_generator",
+        sequenceName = "systemuser_seq",
+        initialValue = 2,
+        allocationSize = 1
     )
     private Long id;
 

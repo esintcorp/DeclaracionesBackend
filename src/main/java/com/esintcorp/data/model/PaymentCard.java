@@ -28,10 +28,10 @@ public class PaymentCard extends AuditModel {
 	@Id
     @GeneratedValue(generator = "paymentcard_generator")
     @SequenceGenerator(
-            name = "paymentcard_generator",
-            sequenceName = "paymentcard_seq",
-            initialValue = 1,
-            allocationSize = 1
+        name = "paymentcard_generator",
+        sequenceName = "paymentcard_seq",
+        initialValue = 1,
+        allocationSize = 1
     )
     private Long id;
 

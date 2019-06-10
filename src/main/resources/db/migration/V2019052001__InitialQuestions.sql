@@ -23,3 +23,25 @@ VALUES
 (20, now(), now(), 'active', 1, 2, 'VALOR RETENCION IVA', 200, 'double'),
 (21, now(), now(), 'active', 1, 2, '%RETENCION FUENTE', 210, 'double'),--(1% / 2% / 8% / 10%)
 (22, now(), now(), 'active', 1, 2, 'VALOR RETENCION FUENTE', 220, 'double');
+
+
+INSERT INTO QuestionOption
+(id, created_at, updated_at, status, question_id, value, sequence)
+VALUES
+(1, now(), now(), 'active', 8, 'Bien', 10),
+(2, now(), now(), 'active', 8, 'Servicio', 20),
+(3, now(), now(), 'active', 17, 'Bien', 10),
+(4, now(), now(), 'active', 17, 'Servicio', 20),
+(5, now(), now(), 'active', 9, 'Compra de Mercdería', 10),
+(6, now(), now(), 'active', 9, 'Pago de Insumos', 20),
+(7, now(), now(), 'active', 9, 'Compra de Suministros de Oficina', 30),
+(8, now(), now(), 'active', 18, 'Compra de Mercdería', 10),
+(9, now(), now(), 'active', 18, 'Pago de Insumos', 20),
+(10, now(), now(), 'active', 18, 'Compra de Suministros de Oficina', 30),
+(11, now(), now(), 'active', 19, '10', 10),
+(12, now(), now(), 'active', 19, '30', 20),
+(13, now(), now(), 'active', 19, '100', 30),
+(14, now(), now(), 'active', 21, '1', 10),
+(15, now(), now(), 'active', 21, '2', 20),
+(16, now(), now(), 'active', 21, '8', 30),
+(17, now(), now(), 'active', 21, '10', 40);

@@ -1,9 +1,12 @@
 package com.esintcorp.data.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -26,10 +29,10 @@ public class Question extends AuditModel {
     @Id
     @GeneratedValue(generator = "question_generator")
     @SequenceGenerator(
-            name = "question_generator",
-            sequenceName = "question_seq",
-            initialValue = 1,
-            allocationSize = 1
+        name = "question_generator",
+        sequenceName = "question_seq",
+        initialValue = 1,
+        allocationSize = 1
     )
     private Long id;
 
@@ -39,6 +42,9 @@ public class Question extends AuditModel {
     @ManyToOne
     private BillType billType;
 
+    @OneToMany(mappedBy="question")
+    private List<QuestionOption> options;
+    
     @NotBlank
     @Size(min = 1, max = 1024)
     private String name;

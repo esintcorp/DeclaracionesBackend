@@ -27,10 +27,10 @@ public class Bill extends AuditModel {
     @Id
     @GeneratedValue(generator = "bill_generator")
     @SequenceGenerator(
-            name = "bill_generator",
-            sequenceName = "bill_seq",
-            initialValue = 1,
-            allocationSize = 1
+        name = "bill_generator",
+        sequenceName = "bill_seq",
+        initialValue = 1,
+        allocationSize = 1
     )
     private Long id;
 

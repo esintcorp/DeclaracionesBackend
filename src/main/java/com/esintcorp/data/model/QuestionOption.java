@@ -7,27 +7,30 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 
 @Entity
-@Table(name = "Answer")
+@Table(name = "QuestionOption")
 @EqualsAndHashCode(callSuper=true)
 @Data
-public class Answer extends AuditModel {
+public class QuestionOption extends AuditModel {
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator = "answer_generator")
+    @GeneratedValue(generator = "questionOption_generator")
     @SequenceGenerator(
-        name = "answer_generator",
-        sequenceName = "answer_seq",
+        name = "questionOption_generator",
+        sequenceName = "questionOption_seq",
         initialValue = 1,
         allocationSize = 1
     )
@@ -38,11 +41,9 @@ public class Answer extends AuditModel {
     private String value;
 
     @ManyToOne
+    @JsonBackReference
     private Question question;
 
-    @ManyToOne
-    private User user;
-
-    @ManyToOne
-    private Bill bill;
+    @NotNull
+    private Integer sequence;
 }

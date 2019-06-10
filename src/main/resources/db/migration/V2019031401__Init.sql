@@ -144,6 +144,23 @@ CREATE SEQUENCE question_seq
   NO MAXVALUE
   CACHE 1;
 
+CREATE TABLE QuestionOption (
+  id             INTEGER NOT NULL PRIMARY KEY,
+  created_at     TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
+  updated_at     TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
+  status         VARCHAR(24) NOT NULL,
+  question_id    INTEGER NOT NULL,
+  value          VARCHAR(1024) NOT NULL,
+  sequence       INTEGER NOT NULL
+);
+
+CREATE SEQUENCE questionOption_seq
+  START WITH 1
+  INCREMENT BY 1
+  NO MINVALUE
+  NO MAXVALUE
+  CACHE 1;
+
 CREATE TABLE Answer (
   id             INTEGER NOT NULL PRIMARY KEY,
   created_at     TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,

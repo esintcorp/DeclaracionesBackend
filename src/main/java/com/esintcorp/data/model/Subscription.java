@@ -25,10 +25,10 @@ public class Subscription extends AuditModel {
     @Id
     @GeneratedValue(generator = "subscription_generator")
     @SequenceGenerator(
-            name = "subscription_generator",
-            sequenceName = "subscription_seq",
-            initialValue = 1,
-            allocationSize = 1
+        name = "subscription_generator",
+        sequenceName = "subscription_seq",
+        initialValue = 1,
+        allocationSize = 1
     )
     private Long id;
 
