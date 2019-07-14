@@ -19,10 +19,10 @@ VALUES
 (16, now(), now(), 'active', 1, 2, 'Total', 160, 'double'),
 (17, now(), now(), 'active', 1, 2, 'Concepto', 170, 'string'),--(BIEN / SERVICIO)
 (18, now(), now(), 'active', 1, 2, 'Descripción', 180, 'string'),--(COMPRA DE MERCADERIA / PAGO DE INSUMOS / COMPRA DE SUMINISTROS DE OFICINA)
-(19, now(), now(), 'active', 1, 2, '% RETENCION IVA', 190, 'double'),--(30% / 10% / 100%)
-(20, now(), now(), 'active', 1, 2, 'VALOR RETENCION IVA', 200, 'double'),
-(21, now(), now(), 'active', 1, 2, '%RETENCION FUENTE', 210, 'double'),--(1% / 2% / 8% / 10%)
-(22, now(), now(), 'active', 1, 2, 'VALOR RETENCION FUENTE', 220, 'double');
+(19, now(), now(), 'active', 1, 2, '% Retención IVA', 190, 'percentage'),--(30% / 10% / 100%)
+(20, now(), now(), 'active', 1, 2, 'Valor Retención IVA', 200, 'double'),
+(21, now(), now(), 'active', 1, 2, '% Retención Fuente', 210, 'percentage'),--(1% / 2% / 8% / 10%)
+(22, now(), now(), 'active', 1, 2, 'Valor Retención Fuente', 220, 'double');
 
 
 INSERT INTO QuestionOption

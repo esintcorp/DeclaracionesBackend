@@ -45,4 +45,11 @@ public class Answer extends AuditModel {
 
     @ManyToOne
     private Bill bill;
+    
+    public Boolean isSell() {
+        if (this.getQuestion().getBillType().getId().equals((long) 2)) {
+            return true;
+        }
+        return false;
+    }
 }
