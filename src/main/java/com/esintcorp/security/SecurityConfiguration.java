@@ -32,31 +32,34 @@ import com.esintcorp.security.authentication.SystemUserDetailsService;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Bean
-	public FilterRegistrationBean<CorsFilter> corsFilter() {
-		FilterRegistrationBean<CorsFilter> filter = new FilterRegistrationBean<CorsFilter>();
-//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowCredentials(true);
-		config.addAllowedOrigin("http://localhost:3000");
-		config.addAllowedHeader("*");
-		config.addAllowedMethod("*");
+    @Bean
+    public FilterRegistrationBean<CorsFilter> corsFilter() {
+        FilterRegistrationBean<CorsFilter> filter = new FilterRegistrationBean<CorsFilter>();
+        CorsConfiguration config = new CorsConfiguration();
 
-//		config.addAllowedOrigin(Collections.singletonList(CorsConfiguration.ALL));
-//        config.setAllowedHeaders(Collections.singletonList(CorsConfiguration.ALL));
-//        config.setAllowedMethods(Collections.singletonList(CorsConfiguration.ALL));
-//		source.registerCorsConfiguration("/**", config);
-//		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean(new CorsFilter(source));
-//		bean.setOrder(0);
-//		return bean;
+        //Websites that are allowed to call our API
+//        config.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+
+//        config.setAllowedMethods(Arrays.asList("POST", "OPTIONS"));
+
+        config.setAllowedOrigins(Collections.singletonList(CorsConfiguration.ALL));
+        config.setAllowedHeaders(Collections.singletonList(CorsConfiguration.ALL));
+        config.setAllowedMethods(Collections.singletonList(CorsConfiguration.ALL));
+
+//        config.setAllowedHeaders(Arrays.asList("access-control-expose-headers", "X-Auth-Token", "X-CSRF-Token"));
+//        config.setAllowedHeaders(Arrays.asList("Content-Type", "Access-Control-Allow-Headers", "Authorization", "X-Requested-With"));
+
+        //Needed to accept cookies
+        config.setAllowCredentials(true);
 
         filter.setFilter(new CorsFilter(r -> config));
         filter.setUrlPatterns(Collections.singleton("/*"));
         filter.setOrder(SecurityProperties.DEFAULT_FILTER_ORDER - 1);
 
         return filter;
-	}
-//	@Bean
+    }
+
+//    @Bean
 //    public WebMvcConfigurer corsConfigurer() {
 //        return new WebMvcConfigurerAdapter() {
 //            @Override
@@ -65,11 +68,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //            }
 //        };
 //    }
-	
-	@Autowired
-	private SystemUserDetailsService systemUserDetailsService;
-	
-	
+
+    @Autowired
+    private SystemUserDetailsService systemUserDetailsService;
+
     /**
      * Configures the database authentication provider and the method we'll use to encrypt the passwords.
      */
@@ -97,16 +99,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	List<String> finalPublicUrls = Stream.of("/", "/login", "/register", "/subscription", "/payment").collect(Collectors.toList());
+        List<String> finalPublicUrls = Stream.of("/", "/login", "/register", "/subscription", "/payment").collect(Collectors.toList());
 
-    	http
+        http
         .csrf()
         .requireCsrfProtectionMatcher(
-        	new NoAntPathRequestMatcher(
-        		Stream.of(finalPublicUrls/*, ""/*noneCsrfUrls*/)
-        		.flatMap(Collection::stream)
-        		.collect(Collectors.toList())
-        	)
+            new NoAntPathRequestMatcher(
+                Stream.of(finalPublicUrls/*, ""/*noneCsrfUrls*/)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList())
+            )
         );
 
         //Authorize all of the endpoints in the app except for these (which require public access)
@@ -125,8 +127,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         //Does the logout only for POST requests, deleting cookies and with a success handler without a redirection.
         http.logout()
-        	.deleteCookies("JSESSIONID")
-        	.logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.ACCEPTED));
+            .deleteCookies("JSESSIONID")
+            .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.ACCEPTED));
     }
 
     /**
