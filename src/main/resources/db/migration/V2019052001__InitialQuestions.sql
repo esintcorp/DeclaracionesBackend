@@ -25,6 +25,17 @@ VALUES
 (22, now(), now(), 'active', 1, 2, 'Valor Retención Fuente', 220, 'double');
 
 
+INSERT INTO Question
+(id, created_at, updated_at, status, declaration_id, billType_id, name, sequence, datatype)
+VALUES
+(23, now(), now(), 'active', 3, 1, 'Fecha', 10, 'date'),
+(24, now(), now(), 'active', 3, 1, 'RUC', 20,'string'),
+(25, now(), now(), 'active', 3, 1, 'Nombre', 30, 'string'),
+(26, now(), now(), 'active', 3, 1, 'Tipo de Gasto', 40, 'string'),
+(27, now(), now(), 'active', 3, 1, 'Total', 70, 'double');
+
+
+
 INSERT INTO QuestionOption
 (id, created_at, updated_at, status, question_id, value, sequence)
 VALUES
@@ -44,4 +55,9 @@ VALUES
 (14, now(), now(), 'active', 21, '1', 10),
 (15, now(), now(), 'active', 21, '2', 20),
 (16, now(), now(), 'active', 21, '8', 30),
-(17, now(), now(), 'active', 21, '10', 40);
+(17, now(), now(), 'active', 21, '10', 40),
+(18, now(), now(), 'active', 26, 'Alimentación', 10),
+(19, now(), now(), 'active', 26, 'Vivienda', 10),
+(20, now(), now(), 'active', 26, 'Vestimenta', 10),
+(21, now(), now(), 'active', 26, 'Salud', 10),
+(22, now(), now(), 'active', 26, 'Educación', 10);

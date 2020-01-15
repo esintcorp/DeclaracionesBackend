@@ -32,4 +32,14 @@ public class QuestionController {
         }
         return null;
     }
+
+    @PostMapping("/getAnexoQuestions")
+    public List<Question> getAnexoQuestions(HttpServletRequest request) {
+        System.out.println("** IVA QUESTIONS ** " );
+        Declaration decl = declarationRepository.findByType("Anexo");
+        if (decl != null) {
+            return questionRepository.findByDeclaration(decl);
+        }
+        return null;
+    }
 }

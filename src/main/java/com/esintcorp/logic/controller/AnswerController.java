@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
@@ -42,19 +44,11 @@ public class AnswerController {
     public List<AnswerDTO> getIvaAnswers(HttpServletRequest request) {
         User user = userRepository.findById((Long) request.getSession().getAttribute("UserID")).get();
         if (user != null) {
-            Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = 1;
-            c.set(year, month, day, 0, 0, 0);
-            c.set(Calendar.MILLISECOND, 0);
-            int numOfDaysInMonth = c.getActualMaximum(Calendar.DAY_OF_MONTH);
-            Date start = c.getTime();
+            Map<String, Date> startAndEnd = getStartAndEnd();
+//            Declaration 
 
-            c.add(Calendar.DAY_OF_MONTH, numOfDaysInMonth);
-            Date end = c.getTime();
-
-            List<Answer> thisMonthAnswers = answerRepository.findThisMonth(user, start, end);
+            List<Answer> thisMonthAnswers = answerRepository
+                .findThisMonth(user, startAndEnd.get("start"), startAndEnd.get("end"), (long) 1);
             List<AnswerDTO> thisMonthAnswersDTO = new ArrayList<AnswerDTO>();
 
             for (Answer answer : thisMonthAnswers) {
@@ -67,7 +61,32 @@ public class AnswerController {
                     answer.getValue()
                 );
                 thisMonthAnswersDTO.add(answerDTO);
+            }
+            return thisMonthAnswersDTO;
+        }
+        return null;
+    }
 
+    @PostMapping("/getAnexoAnswers")
+    public List<AnswerDTO> getAnexoAnswers(HttpServletRequest request) {
+        User user = userRepository.findById((Long) request.getSession().getAttribute("UserID")).get();
+        if (user != null) {
+            Map<String, Date> startAndEnd = getStartAndEnd();
+
+            List<Answer> thisMonthAnswers = answerRepository
+                .findThisMonth(user, startAndEnd.get("start"), startAndEnd.get("end"), new Long(3));
+            List<AnswerDTO> thisMonthAnswersDTO = new ArrayList<AnswerDTO>();
+
+            for (Answer answer : thisMonthAnswers) {
+                AnswerDTO answerDTO = new AnswerDTO(
+                    answer.getQuestion().getId(),
+                    answer.getBill().getId(),
+                    answer.getQuestion().getBillType().getId(),
+                    answer.getQuestion().getName(),
+                    answer.getQuestion().getDatatype(),
+                    answer.getValue()
+                );
+                thisMonthAnswersDTO.add(answerDTO);
             }
             return thisMonthAnswersDTO;
         }
@@ -116,5 +135,28 @@ System.out.println("iva: " + answers.get(5).getValue());
             return new BigDecimal(value);
         }
         return BigDecimal.ZERO;
+    }
+    
+    /**
+     * Obtains the fist and last date of the current month.
+     * 
+     * @return A Map object containing both start and end {@link Date}s. 
+     **/
+    private Map<String, Date> getStartAndEnd() {
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = 1;
+        c.set(year, month, day, 0, 0, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        int numOfDaysInMonth = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+        Date start = c.getTime();
+
+        c.add(Calendar.DAY_OF_MONTH, numOfDaysInMonth);
+        Date end = c.getTime();
+        Map<String, Date> dates = new HashMap<String, Date>();
+        dates.put("start", start);
+        dates.put("end", end);
+        return dates;
     }
 }

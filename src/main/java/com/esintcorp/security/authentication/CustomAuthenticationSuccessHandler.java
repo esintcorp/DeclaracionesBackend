@@ -30,17 +30,18 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     }
 
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-			Authentication authentication) throws IOException, ServletException {
+	public void onAuthenticationSuccess(
+		HttpServletRequest request,
+		HttpServletResponse response,
+		Authentication authentication
+	) throws IOException, ServletException {
 
 System.out.println("STATUS:::: " + response.getStatus());
 
-MyUserPrincipal user = (MyUserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MyUserPrincipal user = (MyUserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		HttpSession session = request.getSession();
 		session.setAttribute("UserID", user.getUser().getId());
-
-System.out.println("UserID:::: " + session.getAttribute("UserID"));
 
 		Map<String, Object> responseData = new HashMap<>();
 		CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());

@@ -29,7 +29,7 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-@Component
+//@Component
 public class LoggingFilter extends OncePerRequestFilter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggingFilter.class);
