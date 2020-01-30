@@ -32,6 +32,10 @@ import com.esintcorp.security.authentication.SystemUserDetailsService;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+	/**
+	 * CORS
+	 * @return
+	 */
     @Bean
     public FilterRegistrationBean<CorsFilter> corsFilter() {
         FilterRegistrationBean<CorsFilter> filter = new FilterRegistrationBean<CorsFilter>();

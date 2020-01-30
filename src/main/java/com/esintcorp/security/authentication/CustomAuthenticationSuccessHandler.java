@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 
+import com.esintcorp.data.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
@@ -50,6 +51,8 @@ System.out.println("STATUS:::: " + response.getStatus());
 			token = csrf.getToken();
 		}
 		responseData.put("token", token);
+
+        responseData.put("sessionInfo", (User) user.getUser());
 
         //Send JSON back to the client with the CSRF token
         PrintWriter writer = response.getWriter();
